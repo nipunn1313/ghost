@@ -1,0 +1,9 @@
+[package]
+name = "ghost"
+version = "0.1.0"
+edition = "2018"
+
+[dependencies]
+clap = "3.0.0-beta.4"
+futures = "0.3.16"
+reqwest = "0.11.4"
