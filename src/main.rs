@@ -20,5 +20,7 @@ async fn main() {
 
     match opts.subcmd {
         SubCommand::Clone(cmd) => clone_cmd(cmd),
-    }.await.unwrap();
+    }
+    .await
+    .unwrap();
 }

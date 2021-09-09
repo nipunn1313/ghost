@@ -1,24 +1,25 @@
-use nom::{
-    InputIter,
-    InputTake,
-    IResult,
-    bytes::complete::take,
-};
+use nom::{bytes::complete::take, IResult, InputIter, InputTake};
 
 /// Grab 4 characters from input
-fn take4<I>(input: I) -> IResult<I, I> where I: InputIter + InputTake {
+fn take4<I>(input: I) -> IResult<I, I>
+where
+    I: InputIter + InputTake,
+{
     take(4usize)(input)
 }
 
 /// Grab 4 characters and parse as a length
-fn takelength<I>(input: I) -> IResult<I, u64> where I: InputIter + InputTake {
+fn takelength<I>(input: I) -> IResult<I, u64>
+where
+    I: InputIter + InputTake,
+{
     unimplemented!()
 }
 
 /*
 fn hexadecimal_value(input: Bytes) -> IResult<Bytes, u64> {
     map_res(
-		take(4),
+        take(4),
         |out: &str| u64::from_str_radix(out, 16),
     )(input)
 }
@@ -26,9 +27,9 @@ fn hexadecimal_value(input: Bytes) -> IResult<Bytes, u64> {
 
 #[cfg(test)]
 mod tests {
-    use nom::Err;
     use nom::error::{Error, ErrorKind};
-    use pretty_assertions::{assert_eq};
+    use nom::Err;
+    use pretty_assertions::assert_eq;
 
     use super::*;
 
