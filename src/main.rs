@@ -1,4 +1,5 @@
 use clap::Clap;
+use tokio;
 
 use ghost::clone::{clone_cmd, CloneCmd};
 
@@ -13,10 +14,11 @@ enum SubCommand {
     Clone(CloneCmd),
 }
 
-fn main() {
+#[tokio::main(flavor = "current_thread")]
+async fn main() {
     let opts: Opts = Opts::parse();
 
     match opts.subcmd {
         SubCommand::Clone(cmd) => clone_cmd(cmd),
-    }
+    }.await.unwrap();
 }

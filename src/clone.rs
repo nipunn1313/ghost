@@ -1,14 +1,18 @@
+use anyhow::Result;
 use clap::Clap;
-use futures::executor::block_on;
-use reqwest;
+
+use crate::protocol::GitProtocol;
 
 #[derive(Clap, Debug)]
 pub struct CloneCmd {
     url: String,
 }
 
-pub fn clone_cmd(cmd: CloneCmd) {
+pub async fn clone_cmd(cmd: CloneCmd) -> Result<()> {
     println!("Hello, world! {:?}", cmd);
-    let x = block_on(reqwest::get(cmd.url));
-    println!("{:?}", x)
+
+    let protocol = GitProtocol::new(cmd.url);
+    let x = protocol.refs().await?;
+    println!("x = {}", x);
+    Ok(())
 }
